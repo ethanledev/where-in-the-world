@@ -22,14 +22,14 @@ const App = () => {
         <label className={styles.switch}>
           <input type="checkbox" onChange={(e) => toggleTheme(e)} />
           <span className={styles.slider}>
-            <img src="/dark-mode.png" alt="moon icon" />
-            <img src="/light-mode.png" alt="sun icon" />
+            <img src={require("../icons/dark-mode.png")} alt="moon icon" />
+            <img src={require("../icons/light-mode.png")} alt="sun icon" />
           </span>
         </label>
       </header>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path=":id" element={<CountryPage />} />
+        <Route path=":code" element={<CountryPage />} />
       </Routes>
     </div>
   );

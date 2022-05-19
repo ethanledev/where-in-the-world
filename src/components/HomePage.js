@@ -3,28 +3,24 @@ import styles from "./HomePage.module.css";
 import { ReactComponent as SearchIcon } from "../icons/search.svg";
 import { ReactComponent as DownArrowhead } from "../icons/down-arrowhead.svg";
 import CountryOverview from "./CountryOverview";
+import { formatPopulation } from "../utils";
 
 const HomePage = () => {
   const [countryList, setCountryList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("all");
   const [showRegions, setShowRegions] = useState(false);
-  const [timer, setTimer] = useState(null);
 
   const fetchCountries = (url) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        if (Array.isArray(data)) {
-          setCountryList(data);
-        } else {
-          setCountryList([]);
-        }
+        setCountryList(data);
       });
   };
 
   useEffect(() => {
-    setSearch("");
     if (region === "all") {
       fetchCountries("https://restcountries.com/v2/all");
     } else {
@@ -32,21 +28,18 @@ const HomePage = () => {
     }
   }, [region]);
 
-  const handleSearchChange = (e) => {
-    const name = e.target.value;
-    setSearch(name);
-    // clearTimeout(timer);
+  useEffect(() => {
+    const filterList = () => {
+      const list = countryList.filter((country) => {
+        const name = country.name.toLowerCase();
+        const target = search.toLowerCase();
+        return name.includes(target);
+      });
+      setFilteredList(list);
+    };
 
-    // const newTimer = setTimeout(() => {
-    //   if (name === "") {
-    //     fetchCountries("https://restcountries.com/v2/all");
-    //   } else {
-    //     fetchCountries("https://restcountries.com/v3.1/name/" + name);
-    //   }
-    // }, 500);
-
-    // setTimer(newTimer);
-  };
+    filterList();
+  }, [countryList, search]);
 
   const renderRegionOptions = () => {
     return ["all", "africa", "americas", "asia", "europe", "oceania"].map(
@@ -65,22 +58,8 @@ const HomePage = () => {
     );
   };
 
-  const formatPopulation = (num) => {
-    const array = num.toString().split("");
-    const numDigits = array.length;
-    const numCommas = Math.floor(numDigits / 3);
-    for (let i = 1; i <= numCommas; i++) {
-      const index = numDigits - i * 3;
-      if (index !== 0) {
-        array.splice(index, 0, ",");
-      }
-    }
-    const populationStr = array.join("");
-    return populationStr;
-  };
-
   const renderCountryOverview = () => {
-    return countryList.map((country) => (
+    return filteredList.map((country) => (
       <CountryOverview
         key={country.name}
         name={country.name}
@@ -88,6 +67,7 @@ const HomePage = () => {
         region={country.region}
         capital={country.capital}
         flag={country.flags.png}
+        code={country.alpha3Code}
       />
     ));
   };
@@ -101,7 +81,7 @@ const HomePage = () => {
           <input
             type="text"
             value={search}
-            onChange={(e) => handleSearchChange(e)}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
         <div className={styles.regionFilter}>

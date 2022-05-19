@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./CountryOverview.module.css";
 
-const CountryOverview = ({ name, population, region, capital, flag }) => {
+const CountryOverview = ({ name, population, region, capital, flag, code }) => {
+  const navigate = useNavigate();
+
   return (
-    <article className={styles.article}>
+    <article className={styles.article} onClick={() => navigate("/" + code)}>
       <img src={flag} alt={name + " flag"} className={styles.flag} />
       <h2>{name}</h2>
       <div className={styles.info}>
