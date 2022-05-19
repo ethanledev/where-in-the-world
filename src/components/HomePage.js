@@ -78,7 +78,11 @@ const HomePage = () => {
       <div className={styles.filterBar}>
         <div className={styles.input}>
           <SearchIcon />
+          <label htmlFor="search" className="srOnly">
+            Search
+          </label>
           <input
+            id="search"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
