@@ -28,8 +28,8 @@ const App = () => {
         </label>
       </header>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path=":code" element={<CountryPage />} />
+        <Route path="/where-in-the-world" element={<HomePage />} />
+        <Route path="/where-in-the-world/:code" element={<CountryPage />} />
       </Routes>
     </div>
   );

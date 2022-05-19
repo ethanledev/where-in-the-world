@@ -5,7 +5,10 @@ const CountryOverview = ({ name, population, region, capital, flag, code }) => {
   const navigate = useNavigate();
 
   return (
-    <article className={styles.article} onClick={() => navigate("/" + code)}>
+    <article
+      className={styles.article}
+      onClick={() => navigate("/where-in-the-world/" + code)}
+    >
       <img src={flag} alt={name + " flag"} className={styles.flag} />
       <h2>{name}</h2>
       <div className={styles.info}>

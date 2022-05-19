@@ -50,7 +50,7 @@ const CountryPage = () => {
       <button
         key={border.code}
         className={styles.borderButton}
-        onClick={() => navigate("/" + border.code)}
+        onClick={() => navigate("/where-in-the-world/" + border.code)}
       >
         {border.name}
       </button>
@@ -59,7 +59,10 @@ const CountryPage = () => {
 
   return (
     <main className={styles.main}>
-      <button className={styles.backButton} onClick={() => navigate("/")}>
+      <button
+        className={styles.backButton}
+        onClick={() => navigate("/where-in-the-world")}
+      >
         <span>&#8592;</span> Back
       </button>
       {info && (
