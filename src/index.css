@@ -20,6 +20,15 @@ html {
   font-size: 62.5%;
 }
 
+.srOnly {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  clip: rect(1px 1px 1px 1px);
+  position: absolute;
+}
+
 :root {
   --element-bg: hsl(0, 0%, 100%);
   --bg: hsl(0, 0%, 98%);
