@@ -33,8 +33,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Github Repo](https://github.com/hieuhmle/where-in-the-world)
-- Live Site URL: [Live site](https://hieuhmle.github.io/where-in-the-world)
+- Solution URL: [Github Repo](https://github.com/hieulecoder/where-in-the-world)
+- Live Site URL: [Live site](https://hieulecoder.github.io/where-in-the-world)
 
 ## My process
 

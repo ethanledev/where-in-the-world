@@ -11,7 +11,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1"
   },
-  "homepage": "https://hieuhmle.github.io/where-in-the-world",
+  "homepage": "https://hieulecoder.github.io/where-in-the-world",
   "scripts": {
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
